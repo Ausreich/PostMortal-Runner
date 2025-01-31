@@ -1,12 +1,13 @@
 name: Run
 
 on:
+  push:
   workflow_dispatch:
   schedule:
     - cron: "0 */6 * * *"
 
 jobs:
-  build:
+  run:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,16 +22,16 @@ jobs:
         with:
           python-version: "3.13"
 
-      - name: Install requirements.
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
       - name: Checkout code.
         uses: actions/checkout@v4
         with:
           repository: Ausreich/PostMortal
           token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
+
+      - name: Install requirements.
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Run program.
         run: python main.py
