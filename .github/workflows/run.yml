@@ -16,6 +16,7 @@ jobs:
           curl -fsSL https://ollama.ai/install.sh | sh
           echo "$HOME/.ollama/bin" >> $GITHUB_PATH
           nohup ollama start &
+          sleep 5
 
       - name: Set up python.
         uses: actions/setup-python@v5
@@ -36,4 +37,4 @@ jobs:
       - name: Run program.
         run: python main.py
         env:
-          GOOGLE_APP_PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
+          PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
