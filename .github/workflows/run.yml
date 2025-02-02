@@ -35,4 +35,4 @@ jobs:
       - name: Run program.
         run: python main.py
         env:
-          PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
+          GOOGLE_APP_PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
