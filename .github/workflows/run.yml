@@ -28,4 +28,4 @@ jobs:
       - name: Run project.
         run: cargo run --release
         env:
-          PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
+          GOOGLE_APP_PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
