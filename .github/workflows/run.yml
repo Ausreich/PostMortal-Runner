@@ -19,6 +19,7 @@ jobs:
 
       - name: Setup ollama.
         run: |
+          echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
           curl -fsSL https://ollama.ai/install.sh | sh
           echo "$HOME/.ollama/bin" >> $GITHUB_PATH
 
@@ -29,3 +30,4 @@ jobs:
         run: cargo run --release
         env:
           GOOGLE_APP_PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
+          START_TIME: ${{env.START_TIME}}
