@@ -29,5 +29,7 @@ jobs:
       - name: Run project.
         run: cargo run --release
         env:
+          RUST_BACKTRACE: full
           GOOGLE_APP_PASSWORD: ${{secrets.GOOGLE_APP_PASSWORD}}
+          GITHUB_TOKEN: ${{secrets.PERSONAL_ACCESS_TOKEN}}
           START_TIME: ${{env.START_TIME}}
