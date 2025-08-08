@@ -10,6 +10,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Set up environment variables.
+        run: echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
+
       - name: Checkout project.
         uses: actions/checkout@v4
         with:
