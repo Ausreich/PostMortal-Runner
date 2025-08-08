@@ -17,7 +17,9 @@ jobs:
           token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
 
       - name: Install ollama.
-        run: brew install ollama
+        run: |
+          brew install ollama
+          brew services start ollama
 
       - name: Install the Rust toolchain.
         uses: actions-rs/toolchain@v1
