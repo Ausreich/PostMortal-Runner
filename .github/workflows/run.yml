@@ -1,14 +1,13 @@
 name: Run
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron: "0 */6 * * *"
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout project.
@@ -17,14 +16,14 @@ jobs:
           repository: Ausreich/PostMortal
           token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
 
-      - name: Setup ollama.
-        run: |
-          echo "START_TIME=$(date +%s)" >> $GITHUB_ENV
-          curl -fsSL https://ollama.ai/install.sh | sh
-          echo "$HOME/.ollama/bin" >> $GITHUB_PATH
+      - name: Install ollama.
+        run: brew install ollama
 
-      - name: Setup toolchain.
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+      - name: Install the Rust toolchain.
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
 
       - name: Run project.
         run: cargo run --release
